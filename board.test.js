@@ -1,5 +1,7 @@
+const board = require('./board');
+
 describe('board', () => {
   it('is empty', () => {
-    return true;
+    expect(board.create()).to.eql({});
   });
 });
