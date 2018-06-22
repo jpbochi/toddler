@@ -1,0 +1,5 @@
+node_modules/
+.npm/
+.config/
+.npmrc
+package-lock.json
