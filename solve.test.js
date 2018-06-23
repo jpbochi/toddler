@@ -74,4 +74,19 @@ describe('solve', () => {
       'FF'
     ]);
   });
+
+  it('with flip', () => {
+    expect(solve.brute(
+      [
+        'XX.',
+        'X..',
+        'X..'
+      ],
+      [animais.caracol]
+    )).to.eql([
+      'XXO',
+      'XOO',
+      'XOO'
+    ]);
+  });
 });

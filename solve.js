@@ -29,7 +29,11 @@ const brute = (current, pieces) => {
     )).find()
   );
 
-  const solution = tryRotates(nextPiece);
+  const tryFlip = (piece) => (
+    tryRotates(piece) || tryRotates(board.flip(piece))
+  );
+
+  const solution = tryFlip(nextPiece);
   if (solution) {
     return brute(solution, _.tail(pieces));
   }
