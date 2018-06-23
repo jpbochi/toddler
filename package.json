@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "ci": "mocha '**/*.test.js' && eslint .",
     "test": "mocha '**/*.test.js'",
     "lint": "eslint ."
   },
