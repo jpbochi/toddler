@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const solve = require('./solve');
 const board = require('./board');
 const animais = require('./animais');
@@ -88,5 +89,59 @@ describe('solve', () => {
       'XOO',
       'XOO'
     ]);
+  });
+
+  it('camel after elephant', () => {
+    expect(solve.brute(
+      [
+        'EEEEEE.',
+        'EEEEEE.',
+        'EEEE.E.',
+        'E..E.E.',
+        'E..E.E.',
+        '.......',
+        '.......'
+      ],
+      [animais.camelo]
+    )).to.eql([
+      'EEEEEE.',
+      'EEEEEE.',
+      'EEEEMEM',
+      'E..EMEM',
+      'E..EMEM',
+      '...MMMM',
+      '..MM.M.'
+    ]);
+  });
+
+  it.skip('elephant and camel', () => {
+    expect(solve.brute(
+      [
+        '........',
+        '........',
+        '........',
+        '........',
+        '........',
+        '........',
+        '........'
+      ],
+      [animais.elefante, animais.camelo]
+    )).to.eql([
+      'EEEEEE.',
+      'EEEEEE.',
+      'EEEEMEM',
+      'E..EMEM',
+      'E..EMEM',
+      '...MMMM',
+      '..MM.M.'
+    ]);
+  });
+
+  it.skip('with several', () => {
+    expect(solve.brute(board.empty(), _.take(_.values(animais), 5))).to.eql(['???']);
+  });
+
+  it.skip('all', () => {
+    expect(solve.brute(board.empty(), _.values(animais))).to.eql(['???']);
   });
 });

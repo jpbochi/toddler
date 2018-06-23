@@ -119,4 +119,14 @@ describe('board', () => {
       'GG..'
     ]);
   });
+
+  it('rotates camelo', () => {
+    expect(board.rotate(animais.camelo, 3)).to.eql([
+      'M....',
+      'MM...',
+      '.MMMM',
+      'MM...',
+      '.MMMM'
+    ]);
+  });
 });
