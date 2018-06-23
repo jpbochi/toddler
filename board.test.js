@@ -76,6 +76,17 @@ describe('board', () => {
     ]);
   });
 
+  it('shifts pato right and down', () => {
+    expect(board.shift(animais.pato, [2, 3])).to.eql([
+      '',
+      '',
+      '',
+      '....PP',
+      '..PPP',
+      '..PPP'
+    ]);
+  });
+
   it('flips elefante', () => {
     expect(board.flip(animais.elefante)).to.eql([
       'E..E.E',

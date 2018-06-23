@@ -40,4 +40,25 @@ describe('solve', () => {
       '............'
     ]);
   });
+
+  it('three pieces', () => {
+    expect(solve.brute(board.empty(), [
+      animais.dinosauro,
+      animais.girafa,
+      animais.hipopotamo
+    ])).to.eql([
+      '.....DD..GG.',
+      'HHHHHHD...G.',
+      'HHHHHHD...G.',
+      '.H.H..D...G.',
+      '...DDDD...G.',
+      'DDDDDDDGGGG.',
+      '...D..D.GGG.',
+      '........G.G.',
+      '........G.G.',
+      '............',
+      '............',
+      '............'
+    ]);
+  });
 });
