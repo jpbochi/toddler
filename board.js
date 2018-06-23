@@ -38,8 +38,16 @@ const shiftRight = (piece, delta) => (
   ))
 );
 
+const shiftDown = (piece, delta) => (
+  _.concat(
+    _.times(delta).map(() => ''),
+    piece
+  )
+);
+
 module.exports = {
   empty,
   add,
-  shiftRight
+  shiftRight,
+  shiftDown
 };

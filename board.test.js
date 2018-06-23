@@ -36,11 +36,20 @@ describe('board', () => {
     ]);
   });
 
-  it('shifts hipopotamo to right', () => {
+  it('shifts hipopotamo right', () => {
     expect(board.shiftRight(animais.hipopotamo, 3)).to.eql([
       '...HHHHHH',
       '...HHHHHH',
       '....H.H..'
+    ]);
+  });
+
+  it('shifts crocodilo down', () => {
+    expect(board.shiftDown(animais.crocodilo, 2)).to.eql([
+      '',
+      '',
+      'CCCCC',
+      'C.C'
     ]);
   });
 });
