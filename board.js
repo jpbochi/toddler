@@ -74,6 +74,29 @@ const rotate = (piece, times = 1) => (
   _.reduce(_.times(times), rotateOnce, piece)
 );
 
+const regions = (board) => {
+  const width = _.max(_.map(board, _.size));
+  const height = _.size(board);
+  let nextRegion = 'a';
+
+  return _.times(height).reduce((accRegions, y) => {
+    return _.concat(accRegions, _.times(width).reduce((accRow, x) => {
+      const cell = board[y][x];
+      if (isOccupiedCell(cell)) return accRow + '.';
+
+      const regionLeft = _.last(accRow) || '.';
+      if (regionLeft !== '.') return accRow + regionLeft;
+
+      const regionUp = _.get(_.last(accRegions) || '', x) || '.';
+      if (regionUp !== '.') return accRow + regionUp;
+
+      const res = accRow + nextRegion;
+      nextRegion = String.fromCharCode(nextRegion.charCodeAt() + 1);
+      return res;
+    }, ''));
+  }, []);
+};
+
 module.exports = {
   empty,
   add,
@@ -81,5 +104,6 @@ module.exports = {
   shiftDown,
   shift,
   flip,
-  rotate
+  rotate,
+  regions
 };

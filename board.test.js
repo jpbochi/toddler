@@ -129,4 +129,20 @@ describe('board', () => {
       '.MMMM'
     ]);
   });
+
+  it('finds simple regions', () => {
+    expect(board.regions([
+      'M....',
+      'MM...',
+      '.MMMM',
+      'MM...',
+      '.MMMM'
+    ])).to.eql([
+      '.aaaa',
+      '..aaa',
+      'b....',
+      '..ccc',
+      'd....'
+    ]);
+  });
 });
