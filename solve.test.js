@@ -61,4 +61,17 @@ describe('solve', () => {
       '............'
     ]);
   });
+
+  it('with rotate', () => {
+    expect(solve.brute(
+      [
+        'X.',
+        '..'
+      ],
+      [animais.peixe]
+    )).to.eql([
+      'XF',
+      'FF'
+    ]);
+  });
 });
