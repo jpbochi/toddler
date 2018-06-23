@@ -23,14 +23,18 @@ const normalizeCell = (cell) => (isOccupiedCell(cell) ? cell : '.');
 const add = (board, piece) => {
   const normBoard = _.map(board, _.toArray);
   const normPiece = _.map(piece, _.toArray);
-  return _.zip(normBoard, normPiece)
+  const merged = _.zip(normBoard, normPiece)
     .map(([rowB, rowA]) => (
       _.zip(rowB, rowA)
         .map(([cellB, cellA]) => (
-          isOccupiedCell(cellA) ? cellA : cellB
+          isOccupiedCell(cellA)
+            ? (isOccupiedCell(cellB) ? '*' : cellA)
+            : cellB
         ))
         .join('')
     ));
+  const hasConflict = _.some(merged, row => _.includes(row, '*'));
+  return hasConflict ? false : merged;
 };
 
 const shiftRight = (piece, delta) => (

@@ -36,6 +36,29 @@ describe('board', () => {
     ]);
   });
 
+  it('adds two pieces', () => {
+    const withDino = board.add(board.empty(), animais.dinosauro);
+    expect(board.add(withDino, animais.ursoBranco)).to.eql([
+      'BBBB.DD.....',
+      'BBB...D.....',
+      'B.B...D.....',
+      '......D.....',
+      '...DDDD.....',
+      'DDDDDDD.....',
+      '...D..D.....',
+      '............',
+      '............',
+      '............',
+      '............',
+      '............'
+    ]);
+  });
+
+  it('adds with conflict', () => {
+    const withDino = board.add(board.empty(), animais.dinosauro);
+    expect(board.add(withDino, animais.elefante)).to.eql(false);
+  });
+
   it('shifts hipopotamo right', () => {
     expect(board.shiftRight(animais.hipopotamo, 3)).to.eql([
       '...HHHHHH',
