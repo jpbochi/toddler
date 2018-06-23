@@ -16,11 +16,16 @@ const brute = (current, pieces) => {
 
     const xShifts = _.times(width - pieceWidth + 1);
     const yShifts = _.times(height - pieceHeight + 1);
-    return _(yShifts).map(y => (
-      _(xShifts).map(x => (
-        board.add(current, board.shift(piece, [x, y]))
-      )).find()
-    )).find();
+    for (var y in yShifts) {
+      for (var x in xShifts) {
+        const partial = board.add(current, board.shift(piece, [x, y]));
+        if (partial) {
+          const solution = brute(partial, _.tail(pieces));
+          if (solution) return solution;
+        }
+      }
+    }
+    return false;
   };
 
   const tryRotates = (piece) => (
@@ -33,11 +38,7 @@ const brute = (current, pieces) => {
     tryRotates(piece) || tryRotates(board.flip(piece))
   );
 
-  const solution = tryFlip(nextPiece);
-  if (solution) {
-    return brute(solution, _.tail(pieces));
-  }
-  return false;
+  return tryFlip(nextPiece);
 };
 
 module.exports = {

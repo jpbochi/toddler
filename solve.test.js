@@ -114,16 +114,16 @@ describe('solve', () => {
     ]);
   });
 
-  it.skip('elephant and camel', () => {
+  it('elephant and camel', () => {
     expect(solve.brute(
       [
-        '........',
-        '........',
-        '........',
-        '........',
-        '........',
-        '........',
-        '........'
+        '.......',
+        '.......',
+        '.......',
+        '.......',
+        '.......',
+        'X......',
+        'XX....X'
       ],
       [animais.elefante, animais.camelo]
     )).to.eql([
@@ -132,8 +132,8 @@ describe('solve', () => {
       'EEEEMEM',
       'E..EMEM',
       'E..EMEM',
-      '...MMMM',
-      '..MM.M.'
+      'X..MMMM',
+      'XXMM.MX'
     ]);
   });
 
