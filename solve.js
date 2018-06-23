@@ -28,11 +28,13 @@ const brute = (current, pieces) => {
     return false;
   };
 
-  const tryRotates = (piece) => (
-    _([0, 1, 2, 3]).map(rotations => (
-      tryShifts(board.rotate(piece, rotations))
-    )).find()
-  );
+  const tryRotates = (piece) => {
+    for (var rotations in [0, 1, 2, 3]) {
+      const solution = tryShifts(board.rotate(piece, rotations));
+      if (solution) return solution;
+    }
+    return false;
+  };
 
   const tryFlip = (piece) => (
     tryRotates(piece) || tryRotates(board.flip(piece))

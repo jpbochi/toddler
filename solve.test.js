@@ -137,8 +137,21 @@ describe('solve', () => {
     ]);
   });
 
-  it.skip('with several', () => {
-    expect(solve.brute(board.empty(), _.take(_.values(animais), 5))).to.eql(['???']);
+  it.skip('with several', () => { // 9 takes 2 hours
+    expect(solve.brute(board.empty(), _.take(_.values(animais), 9))).to.eql([
+      'U.GG..HHHHHH',
+      'UUUGDDHHHHHH',
+      'UU.GDZ.HZHCC',
+      'UU.GDZ..Z..C',
+      'UUUGDZZZZ.CC',
+      'GGGGDDDDZZ.C',
+      '.GGGDDDDDDDC',
+      'EGEGDEMDMBBB',
+      'EGEG.EM.M.BB',
+      'E.EEEEM.MBBB',
+      'EEEEEEMMMM.B',
+      'EEEEEE.M.MM.'
+    ]);
   });
 
   it.skip('all', () => {
