@@ -45,9 +45,14 @@ const shiftDown = (piece, delta) => (
   )
 );
 
+const flip = (piece) => (
+  _.reverse(piece)
+);
+
 module.exports = {
   empty,
   add,
   shiftRight,
-  shiftDown
+  shiftDown,
+  flip
 };

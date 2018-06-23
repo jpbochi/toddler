@@ -52,4 +52,14 @@ describe('board', () => {
       'C.C'
     ]);
   });
+
+  it('flips elefante', () => {
+    expect(board.flip(animais.elefante)).to.eql([
+      'E..E.E',
+      'E..E.E',
+      'EEEE.E',
+      'EEEEEE',
+      'EEEEEE'
+    ]);
+  });
 });
