@@ -18,6 +18,7 @@ const empty = () => {
 };
 
 const isOccupiedCell = (cell) => (!!cell && (cell !== '.'));
+const normalizeCell = (cell) => (isOccupiedCell(cell) ? cell : '.');
 
 const add = (board, piece) => {
   const normBoard = _.map(board, _.toArray);
@@ -49,10 +50,23 @@ const flip = (piece) => (
   _.reverse(piece)
 );
 
+const rotate = (piece) => {
+  const width = _.max(_.map(piece, _.size));
+  const height = _.size(piece);
+  const normPiece = _.map(piece, _.toArray);
+
+  return _.times(width).map(x => (
+    _.times(height).map(y => (
+      normalizeCell(normPiece[height - 1 - y][x])
+    )).join('')
+  ));
+};
+
 module.exports = {
   empty,
   add,
   shiftRight,
   shiftDown,
-  flip
+  flip,
+  rotate
 };

@@ -62,4 +62,13 @@ describe('board', () => {
       'EEEEEE'
     ]);
   });
+
+  it('rotates girafa', () => {
+    expect(board.rotate(animais.girafa)).to.eql([
+      '...G.....',
+      'GGGG.....',
+      '..GG....G',
+      'GGGGGGGGG',
+    ]);
+  });
 });
