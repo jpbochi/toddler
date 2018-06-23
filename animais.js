@@ -1,5 +1,5 @@
-const list = () => [
-  [
+module.exports = {
+  girafa: [
     '..GG',
     '...G',
     '...G',
@@ -9,15 +9,15 @@ const list = () => [
     '.GGG',
     '.G.G',
     '.G.G'
-  ], // Girafa
-  [
+  ],
+  elefante: [
     'EEEEEE',
     'EEEEEE',
     'EEEE.E',
     'E..E.E',
     'E..E.E'
-  ], // Elefante
-  [
+  ],
+  dinosauro: [
     '.....DD',
     '......D',
     '......D',
@@ -25,60 +25,56 @@ const list = () => [
     '...DDDD',
     'DDDDDDD',
     '...D..D'
-  ], // Dinosauro
-  [
+  ],
+  hipopotamo: [
     'HHHHHH',
     'HHHHHH',
     '.H.H..'
-  ], // Hipopotamo
-  [
+  ],
+  camelo: [
     '.M.MM',
     'MMMM',
     'M.M',
     'M.M',
     'M.M'
-  ], // caMelo
-  [
+  ],
+  zebra: [
     '...ZZ',
     'ZZZZ',
     'Z..Z',
     'Z..Z'
-  ], // Zebra
-  [
+  ],
+  ursoMarrom: [
     'UUUUU',
     'UUUU',
     'U..U'
-  ], // Urso marrom
-  [
+  ],
+  ursoBranco: [
     'BBBB',
     'BBB',
     'B.B'
-  ], // urso Branco
-  [
+  ],
+  crocodilo: [
     'CCCCC',
     'C.C'
-  ], // Crocodilo
-  [
+  ],
+  pato: [
     '..PP',
     'PPP',
     'PPP'
-  ], // Pato
-  [
+  ],
+  cruz: [
     '.X.',
     'XXX',
     '.X.',
     '.X.'
-  ], // cruX
-  [
+  ],
+  caracol: [
     'OOO',
     'OO'
-  ], // caracOl
-  [
+  ],
+  peixe: [
     'FF',
     'F'
-  ] // Fish
-];
-
-module.exports = {
-  list
+  ]
 };
