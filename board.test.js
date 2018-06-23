@@ -35,4 +35,12 @@ describe('board', () => {
       '............'
     ]);
   });
+
+  it('shifts hipopotamo to right', () => {
+    expect(board.shiftRight(animais.hipopotamo, 3)).to.eql([
+      '...HHHHHH',
+      '...HHHHHH',
+      '....H.H..'
+    ]);
+  });
 });

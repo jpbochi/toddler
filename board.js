@@ -32,7 +32,14 @@ const add = (board, piece) => {
     ));
 };
 
+const shiftRight = (piece, delta) => (
+  _.map(piece, row => (
+    _.repeat('.', delta) + row
+  ))
+);
+
 module.exports = {
   empty,
-  add
+  add,
+  shiftRight
 };
