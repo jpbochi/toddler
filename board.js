@@ -58,7 +58,7 @@ const flip = (piece) => (
   _.reverse(piece)
 );
 
-const rotate = (piece) => {
+const rotateOnce = (piece) => {
   const width = _.max(_.map(piece, _.size));
   const height = _.size(piece);
   const normPiece = _.map(piece, _.toArray);
@@ -69,6 +69,10 @@ const rotate = (piece) => {
     )).join('')
   ));
 };
+
+const rotate = (piece, times = 1) => (
+  _.reduce(_.times(times), rotateOnce, piece)
+);
 
 module.exports = {
   empty,
