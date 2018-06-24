@@ -120,14 +120,13 @@ const regions = (board) => {
   ));
 };
 
-const areas = (board) => {
-  const areas = _(board)
+const areas = (board) => (
+  _(board)
     .flatMap(_.toArray)
     .reduce((areas, cell) => (
       _.set(areas, [cell], _.get(areas, [cell], 0) + 1)
-    ), {});
-  return _.omit(areas, '.');
-};
+    ), {})
+);
 
 module.exports = {
   empty,
