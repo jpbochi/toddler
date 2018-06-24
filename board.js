@@ -81,8 +81,11 @@ const regions = (board) => {
   const equivalency = { '.': '.', a: 'a' };
 
   const setEquivalency = (left, up) => {
-    if (equivalency[left] !== left) setEquivalency(equivalency[left], up);
-    equivalency[left] = equivalency[up];
+    const min = _.min([equivalency[left], equivalency[up]]);
+    if (equivalency[left] !== left) setEquivalency(equivalency[left], min);
+    if (equivalency[up] !== up) setEquivalency(equivalency[up], min);
+    equivalency[left] = min;
+    equivalency[up] = min;
   };
 
   const firstPass = _.times(height).reduce((accRegions, y) => {

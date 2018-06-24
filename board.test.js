@@ -178,6 +178,24 @@ describe('board', () => {
     ]);
   });
 
+  it('finds odd regions', () => {
+    expect((board.regions([
+      '...D..GG.',
+      '.DDD...G.',
+      'DDDDGGGG.',
+      '.D.D.GGG.',
+      '.....G.G.',
+      '.........'
+    ]))).to.eql([
+      'aaa.bb..c',
+      'a...bbb.c',
+      '........c',
+      'c.c.c...c',
+      'ccccc.c.c',
+      'ccccccccc'
+    ]);
+  });
+
   it('sums up area of regions/pieces', () => {
     expect(board.areas([
       '...M.BB',
