@@ -188,24 +188,54 @@ describe('solve', () => {
     ]);
   });
 
-  it.skip('with nine', () => { // 9 takes 2 hours
+  it.skip('with nine', () => { // done in ~2 hours~ 10 min
     expect(solve.brute(board.empty(), _.take(_.values(animais), 9), 3)).to.eql([
-      'U.GG..HHHHHH',
-      'UUUGDDHHHHHH',
-      'UU.GDZ.HZHCC',
-      'UU.GDZ..Z..C',
-      'UUUGDZZZZ.CC',
-      'GGGGDDDDZZ.C',
-      '.GGGDDDDDDDC',
-      'EGEGDEMDMBBB',
-      'EGEG.EM.M.BB',
-      'E.EEEEM.MBBB',
-      'EEEEEEMMMM.B',
-      'EEEEEE.M.MM.'
+      'HHDDDDDDD.GG',
+      'HHDZZZDD..BG',
+      'HHH..ZDDBBBG',
+      'HH...ZDDDBBG',
+      'HHHZZZZDBBBG',
+      'HHMMMMZDGGGG',
+      'EEEEEMMD.GGG',
+      'EEMMMM...GCG',
+      'EEEEEMM..GCG',
+      'EEE..UM.U.CC',
+      'EEE..UUUU.C.',
+      'EEEEEUUUUUCC'
     ]);
   });
 
-  it.skip('all', () => {
-    expect(solve.brute(board.empty(), _.values(animais))).to.eql(['???']);
+  it.skip('with ten', () => { // done in 10 min (almost tied with 9 pieces!)
+    expect(solve.brute(board.empty(), _.take(_.values(animais), 10), 3)).to.eql([
+      'HHDDDDDDD.GG',
+      'HHDZZZDD..BG',
+      'HHH..ZDDBBBG',
+      'HH...ZDDDBBG',
+      'HHHZZZZDBBBG',
+      'HHMMMMZDGGGG',
+      'EEEEEMMDUGGG',
+      'EEMMMMUUUG.G',
+      'EEEEEMMUUG.G',
+      'EEEPPPMUU...',
+      'EEEPPPUUUC.C',
+      'EEEEEPPCCCCC'
+    ]);
+  });
+
+  it.skip('all', () => { // done in 10m6.711s
+    expect(solve.brute(board.empty(), _.values(animais))).to.eql([
+      'HHDDDDDDDFGG',
+      'HHDZZZDDFFBG',
+      'HHHOOZDDBBBG',
+      'HHOOOZDDDBBG',
+      'HHHZZZZDBBBG',
+      'HHMMMMZDGGGG',
+      'EEEEEMMDUGGG',
+      'EEMMMMUUUGXG',
+      'EEEEEMMUUGXG',
+      'EEEPPPMUUXXX',
+      'EEEPPPUUUCXC',
+      'EEEEEPPCCCCC'
+    ]);
   });
 });
