@@ -1,13 +1,26 @@
 const _ = require('lodash');
 const board = require('./board');
 
-const brute = (current, pieces) => {
+const brute = (current, pieces, areaOfSmallerPiece = 0) => {
   const width = _.max(_.map(current, _.size));
   const height = _.size(current);
 
   const nextPiece = _.head(pieces);
   if (!nextPiece) {
     return current;
+  }
+
+  const otherPieces = _.tail(pieces);
+  areaOfSmallerPiece = areaOfSmallerPiece || _(otherPieces)
+    .map(board.areas)
+    .map(areas => _.omit(areas, '.'))
+    .map(_.values)
+    .map(_.head)
+    .min() || 0;
+
+  const areas = _.values(board.areas(board.regions(current)));
+  if (_.min(areas) < areaOfSmallerPiece) { // assuming no space is left unoccupied
+    return false;
   }
 
   const tryShifts = (piece) => {
@@ -19,8 +32,9 @@ const brute = (current, pieces) => {
     for (var y in yShifts) {
       for (var x in xShifts) {
         const partial = board.add(current, board.shift(piece, [x, y]));
+
         if (partial) {
-          const solution = brute(partial, _.tail(pieces));
+          const solution = brute(partial, otherPieces, areaOfSmallerPiece);
           if (solution) return solution;
         }
       }

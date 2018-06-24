@@ -26,7 +26,7 @@ describe('solve', () => {
   });
 
   it('two pieces', () => {
-    expect(solve.brute(board.empty(), [animais.dinosauro, animais.girafa])).to.eql([
+    expect(solve.brute(board.empty(), [animais.dinosauro, animais.girafa], 2)).to.eql([
       '.....DD..GG.',
       '......D...G.',
       '......D...G.',
@@ -47,7 +47,7 @@ describe('solve', () => {
       animais.dinosauro,
       animais.girafa,
       animais.hipopotamo
-    ])).to.eql([
+    ], 2)).to.eql([
       '.....DD..GG.',
       'HHHHHHD...G.',
       'HHHHHHD...G.',
@@ -125,7 +125,7 @@ describe('solve', () => {
         'X......',
         'XX....X'
       ],
-      [animais.elefante, animais.camelo]
+      [animais.elefante, animais.camelo], 1
     )).to.eql([
       'EEEEEE.',
       'EEEEEE.',
@@ -137,8 +137,59 @@ describe('solve', () => {
     ]);
   });
 
-  it.skip('with several', () => { // 9 takes 2 hours
-    expect(solve.brute(board.empty(), _.take(_.values(animais), 9))).to.eql([
+  it('with five', () => {
+    expect(solve.brute(board.empty(), _.take(_.values(animais), 5), 3)).to.eql([
+      '..GGEEEEEE..',
+      '...GEEEEEE..',
+      '...GEEEE.EDD',
+      '...GE..E.E.D',
+      '...GE..E.E.D',
+      'GGGG.......D',
+      '.GGG....DDDD',
+      '.GMGMDDDDDDD',
+      '.GMGM...D..D',
+      '..M.M.H.H...',
+      '.MMMMHHHHHH.',
+      'MM.M.HHHHHH.'
+    ]);
+  });
+
+  it('with six', () => { // 6 takes 2 sec
+    expect(solve.brute(board.empty(), _.take(_.values(animais), 6), 3)).to.eql([
+      '..GGEEEEEE..',
+      '...GEEEEEE..',
+      '...GEEEEMEM.',
+      '...GE..EMEM.',
+      '...GE..EMEM.',
+      'GGGG.D.MMMM.',
+      '.GGG.DMM.MHH',
+      '.G.G.DZZZHHH',
+      '.G.GDDD.Z.HH',
+      '....DD..ZHHH',
+      'D...DDZZZZHH',
+      'DDDDDDD..ZHH'
+    ]);
+  });
+
+  it.skip('with seven', () => { // 7 takes 4 min
+    expect(solve.brute(board.empty(), _.take(_.values(animais), 7), 3)).to.eql([
+      'EEEEEE....GG',
+      'EEEEEEZZ...G',
+      'EEEEMEMZZZZG',
+      'EDDEMEMZ..ZG',
+      'ED.EMEMZ..ZG',
+      '.D..MMMMGGGG',
+      '.D...M.MMGGG',
+      '.DDDD....G.G',
+      '.DDDDDDD.G.G',
+      '.DU.DU.H.H..',
+      '..UUUUHHHHHH',
+      '.UUUUUHHHHHH'
+    ]);
+  });
+
+  it.skip('with nine', () => { // 9 takes 2 hours
+    expect(solve.brute(board.empty(), _.take(_.values(animais), 9), 3)).to.eql([
       'U.GG..HHHHHH',
       'UUUGDDHHHHHH',
       'UU.GDZ.HZHCC',
