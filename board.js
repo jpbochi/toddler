@@ -111,9 +111,19 @@ const regions = (board) => {
     equivalency[key] = equivalency[equivalency[key]];
   });
 
+  // repaint with equivalency
   return _.map(firstPass, row => (
     _.map(row, cell => equivalency[cell]).join('')
   ));
+};
+
+const areas = (board) => {
+  const areas = _(board)
+    .flatMap(_.toArray)
+    .reduce((areas, cell) => (
+      _.set(areas, [cell], _.get(areas, [cell], 0) + 1)
+    ), {});
+  return _.omit(areas, '.');
 };
 
 module.exports = {
@@ -124,5 +134,6 @@ module.exports = {
   shift,
   flip,
   rotate,
-  regions
+  regions,
+  areas
 };

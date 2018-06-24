@@ -177,4 +177,17 @@ describe('board', () => {
       'ccccccc'
     ]);
   });
+
+  it('sums up area of regions/pieces', () => {
+    expect(board.areas([
+      '...M.BB',
+      'XXMMMB.',
+      'X.M.M..',
+      '.......'
+    ])).to.eql({
+      M: 6,
+      B: 3,
+      X: 3
+    });
+  });
 });
