@@ -145,4 +145,40 @@ describe('board', () => {
       'd....'
     ]);
   });
+
+  it('finds joined regions', () => {
+    expect(board.regions([
+      '.M.MM',
+      'MMMM.',
+      'M.M..',
+      'M.M..',
+      'M.M..',
+      '.....'
+    ])).to.eql([
+      'a.b..',
+      '....c',
+      '.c.cc',
+      '.c.cc',
+      '.c.cc',
+      'ccccc'
+    ]);
+  });
+
+  it('finds even more regions', () => {
+    expect(board.regions([
+      '..M.BB',
+      'XMMM.B',
+      '.M.M.B',
+      '.M.M..',
+      '.M.M..',
+      '......'
+    ])).to.eql([
+      'aa.b..',
+      '....c.',
+      'c.c.c.',
+      'c.c.cc',
+      'c.c.cc',
+      'cccccc'
+    ]);
+  });
 });

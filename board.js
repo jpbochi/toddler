@@ -78,23 +78,33 @@ const regions = (board) => {
   const width = _.max(_.map(board, _.size));
   const height = _.size(board);
   let nextRegion = 'a';
+  const equivalency = { '.': '.', a: 'a' };
 
-  return _.times(height).reduce((accRegions, y) => {
-    return _.concat(accRegions, _.times(width).reduce((accRow, x) => {
+  const firstPass = _.times(height).reduce((accRegions, y) => {
+    return _.concat(accRegions, [_.times(width).reduce((accRow, x) => {
       const cell = board[y][x];
-      if (isOccupiedCell(cell)) return accRow + '.';
+      if (isOccupiedCell(cell)) return _.concat(accRow, '.');
 
       const regionLeft = _.last(accRow) || '.';
-      if (regionLeft !== '.') return accRow + regionLeft;
-
       const regionUp = _.get(_.last(accRegions) || '', x) || '.';
-      if (regionUp !== '.') return accRow + regionUp;
 
-      const res = accRow + nextRegion;
+      if (regionLeft !== '.' && regionUp !== '.' && regionLeft !== regionUp) {
+        equivalency[equivalency[regionLeft]] = equivalency[regionUp];
+        equivalency[regionLeft] = equivalency[regionUp];
+      }
+      if (regionLeft !== '.') return _.concat(accRow, regionLeft);
+      if (regionUp !== '.') return _.concat(accRow, regionUp);
+
+      const res = _.concat(accRow, nextRegion);
       nextRegion = String.fromCharCode(nextRegion.charCodeAt() + 1);
+      equivalency[nextRegion] = nextRegion;
       return res;
-    }, ''));
+    }, [])]);
   }, []);
+
+  return _.map(firstPass, row => (
+    _.map(row, cell => equivalency[cell]).join('')
+  ));
 };
 
 module.exports = {
