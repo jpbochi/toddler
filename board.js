@@ -80,6 +80,11 @@ const regions = (board) => {
   let nextRegion = 'a';
   const equivalency = { '.': '.', a: 'a' };
 
+  const setEquivalency = (left, up) => {
+    if (equivalency[left] !== left) setEquivalency(equivalency[left], up);
+    equivalency[left] = equivalency[up];
+  };
+
   const firstPass = _.times(height).reduce((accRegions, y) => {
     return _.concat(accRegions, [_.times(width).reduce((accRow, x) => {
       const cell = board[y][x];
@@ -89,8 +94,7 @@ const regions = (board) => {
       const regionUp = _.get(_.last(accRegions) || '', x) || '.';
 
       if (regionLeft !== '.' && regionUp !== '.' && regionLeft !== regionUp) {
-        equivalency[equivalency[regionLeft]] = equivalency[regionUp];
-        equivalency[regionLeft] = equivalency[regionUp];
+        setEquivalency(regionLeft, regionUp);
       }
       if (regionLeft !== '.') return _.concat(accRow, regionLeft);
       if (regionUp !== '.') return _.concat(accRow, regionUp);
@@ -101,6 +105,11 @@ const regions = (board) => {
       return res;
     }, [])]);
   }, []);
+
+  // fix up equivalency
+  _.keys(equivalency).sort().forEach(key => {
+    equivalency[key] = equivalency[equivalency[key]];
+  });
 
   return _.map(firstPass, row => (
     _.map(row, cell => equivalency[cell]).join('')

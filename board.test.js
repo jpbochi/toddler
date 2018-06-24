@@ -166,19 +166,15 @@ describe('board', () => {
 
   it('finds even more regions', () => {
     expect(board.regions([
-      '..M.BB',
-      'XMMM.B',
-      '.M.M.B',
-      '.M.M..',
-      '.M.M..',
-      '......'
+      '...M.BB',
+      'XXMMMB.',
+      'X.M.M..',
+      '.......'
     ])).to.eql([
-      'aa.b..',
-      '....c.',
-      'c.c.c.',
-      'c.c.cc',
-      'c.c.cc',
-      'cccccc'
+      'aaa.b..',
+      '......c',
+      '.c.c.cc',
+      'ccccccc'
     ]);
   });
 });
